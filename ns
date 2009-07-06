@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# put this somewhere in your path, and symlink some other common prefixes to it, e.g. ca, cf, cg, eagl, gl, glu, ib, ui
+# then invoke it with the appropriate prefix: `ns array` or `ui tableview` or `cf type` or `ea
+prefix = File.basename($0)
+klass = ARGV[0] || (puts("Usage: #{prefix} CLASS") && exit(1))
+[ # add a path here if you want to search other locations for documentation
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/*/Classes/#{prefix}#{klass}_Class/Reference/Reference.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/*/Classes/#{prefix}#{klass}_Class/Reference/#{prefix}#{klass}.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/#{prefix}#{klass}_class/Reference/#{prefix}#{klass}.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/#{prefix}#{klass}_Class/Introduction/Introduction.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/*/Classes/#{prefix}#{klass}_Class/Introduction/Introduction.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/#{prefix}#{klass}_protocol/Reference/#{prefix}#{klass}.html",
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Cocoa/Reference/#{prefix}#{klass}_class/Reference/Reference.html",
+	
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/*/Reference/#{prefix}#{klass}Ref/Reference/reference.html", # CoreFoundation
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/CoreFoundation/Reference/#{prefix}#{klass}Ref/Reference/reference.html",
+	
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/CoreFoundation/Reference/#{prefix}#{klass}Ref/index.html", # iPhone CoreFoundation
+	
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/*/Reference/#{prefix}#{klass}_class/Introduction/Introduction.html", # CoreAnimation
+	
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/Darwin/Reference/ManPages/man3/#{prefix}#{klass}.3.html", # man pages, e.g. OpenGL man pages
+	
+	"/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/DeveloperTools/Reference/#{prefix}#{klass}_class/Reference/Reference.html", # IBKit docs
+	
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/UIKit/Reference/#{prefix}#{klass}_Class/#{prefix}#{klass}/#{prefix}#{klass}.html", # iPhone/UIKit
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/UIKit/Reference/#{prefix}#{klass}_Class/Reference/#{prefix}#{klass}.html",
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/UIKit/Reference/#{prefix}#{klass}_Class/Reference/Reference.html",
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/UIKit/Reference/#{prefix}#{klass}_Class/#{prefix}#{klass}ClassReference/#{prefix}#{klass}ClassReference.html",
+	
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/GraphicsImaging/Reference/#{prefix}#{klass}_class/Introduction/Introduction.html", # iPhone/CoreAnimation
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/QuartzCore/Reference/#{prefix}#{klass}_Class/CAEGLLayer/CAEGLLayer.html",
+	
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/GraphicsImaging/Reference/#{prefix}#{klass}/Reference/reference.html", # iPhone/CoreGraphics
+	
+	"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/*.docset/Contents/Resources/Documents/documentation/OpenGLES/Reference/#{prefix}#{klass}_ClassRef/Reference/#{prefix}#{klass}.html" # iPhone/OpenGL ES
+].each do |path|
+	matches = Dir.glob(path)
+	unless matches.empty?
+		puts matches.first
+		`open -a Safari #{matches.first}`
+		exit 0
+	end
+end
+puts "No matching documentation found."
