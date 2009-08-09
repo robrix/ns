@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# put this somewhere in your path, and symlink some other common prefixes to it, e.g. ca, cf, cg, eagl, gl, glu, ib, ui
+# put this somewhere in your path, and symlink some other common prefixes to it, e.g. ca, cf, cg, eagl, gl, glu, ib, ui, web
 # then invoke it with the appropriate prefix: `ns array` or `ui tableview` or `cf type` or `ea
 prefix = File.basename($0)
 klass = ARGV[0] || (puts("Usage: #{prefix} CLASS") && exit(1))
