@@ -24,8 +24,8 @@ PATTERNS = [ # these patterns are matched within <docset>/Contents/Resources/Doc
 	"*/Classes/#{prefix}#{klass}_Class/Reference/Reference.html",
 	"Foundation/Classes/#{prefix}#{klass}_Class/Reference/Reference.html",
 	"ManPages/man3/#{prefix}#{klass}.3.html", # man pages, e.g. OpenGL man pages
-  "*/Classes/#{prefix}#{klass}_Class/#{prefix}#{klass}.html",
-  "*/Classes/#{prefix}#{klass}_WebKitAdditions/Reference/Reference.html",
+	"*/Classes/#{prefix}#{klass}_Class/#{prefix}#{klass}.html",
+	"*/Classes/#{prefix}#{klass}_WebKitAdditions/Reference/Reference.html",
 ]
 DOCSETS.each do |docset|
 	PATTERNS.each do |pattern|
