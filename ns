@@ -20,6 +20,7 @@ PATTERNS = [ # these patterns are matched within <docset>/Contents/Resources/Doc
 	"#{prefix}#{klass}_ClassRef/Reference/#{prefix}#{klass}.html", # iPhone/OpenGL ES
 	"#{prefix}#{klass}_protocol/Reference/#{prefix}#{klass}.html",
 	"#{prefix}#{klass}_protocol/Reference/Reference.html",
+	"*/Protocols/#{prefix}#{klass}_protocol/Reference/Reference.html",
 	"*/Classes/#{prefix}#{klass}_Class/Introduction/Introduction.html",
 	"*/Classes/#{prefix}#{klass}_Class/Reference/#{prefix}#{klass}.html",
 	"*/Classes/#{prefix}#{klass}_Class/Reference/Reference.html",
